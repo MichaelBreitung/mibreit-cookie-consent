@@ -1,0 +1,15 @@
+.main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.main > *:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.buttonRow {
+  display: flex;
+  justify-content: end;
+}

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "./lib-es6/",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es5",
+    "allowJs": true,
+    "declaration": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+  },
+  "include": ["src"],  
+}

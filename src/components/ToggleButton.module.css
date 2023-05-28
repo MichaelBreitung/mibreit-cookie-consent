@@ -1,0 +1,39 @@
+.toggleButton {
+  position: relative;
+  display: inline-block;
+  width: 2.5rem;
+  height: 1.5rem;
+}
+
+.toggleButton span {
+  position: absolute;
+  background-color: #ccc;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.toggleButton span::before {
+  background-color: white;
+  border-radius: 50%;
+  content: "";
+  position: absolute;
+  margin: 0.125rem;
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+input:checked + span {
+  background-color: darkgreen;
+}
+
+input:checked + span::before {
+  transform: translateX(1rem);
+}
+
+.toggleButton input {
+  display: none;
+} 
