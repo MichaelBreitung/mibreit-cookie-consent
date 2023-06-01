@@ -13,3 +13,12 @@
   display: flex;
   justify-content: end;
 }
+
+.info {
+  display: none;
+  padding-bottom: 0.5rem;
+}
+
+.info.visible {
+  display: unset;
+}

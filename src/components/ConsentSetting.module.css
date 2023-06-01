@@ -4,3 +4,17 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.svgContainer {
+  display: contents;
+}
+
+.setter > span {
+  flex-grow: 1;
+}
+
+.setter svg {
+  width: 2rem;
+  height: 2rem;
+  margin-left: 0.5rem;
+}
