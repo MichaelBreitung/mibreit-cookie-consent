@@ -74,6 +74,14 @@ export default class CookieSelector {
     this._updateCookies();
   }
 
+  public show() {
+    removeCssClass(this._cookieSelector, styles.hide);
+  }
+
+  public hide () {
+    addCssClass(this._cookieSelector, styles.hide);
+  }
+
   private _updateCookies = () => {
     const consent: { [key: string]: boolean } = {};
     this._cookies.forEach((value, key) => {

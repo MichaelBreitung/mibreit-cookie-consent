@@ -1,8 +1,9 @@
 .button {
   position: relative;
-  width: 4rem;
   height: 1.5rem;
   margin-top: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   border-style: none;
   border-radius: 0.25rem
 }

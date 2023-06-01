@@ -7,7 +7,7 @@ Simple Cookie Selection Widget that can be used to store consent for different c
 You will find an example under */demo/consent.html*.
 
 ````
-mibreitCookieConsent.createCookieSelector(
+mibreitCookieConsent.createCookieConsent(
   parent, // Parent HTMLElement
   [{label: "Basic Cookies", cookieName: "basic", info: "Basic Cookies Info"}, 
    {label: "Optional Cookies", cookieName: "optional", active: false, info: "Optional Cookies Info"}],
@@ -17,9 +17,9 @@ mibreitCookieConsent.createCookieSelector(
 
 ## Consent Cookie
 
-The content of the consent cookie is configured by passing an Array of configurations to the *CookieSelector* as second argument. 
+The content of the consent cookie is configured by passing an Array of configurations to the *CookieConsent* as second argument. 
 
-Each config within the Array is used to create a *ConsentSetting* inside the *CookieSelector*:
+Each config within the Array is used to create a *ConsentSetting* inside the *CookieConsent*:
 
 - label - The displayed name of the consent setting
 - cookieName - The name of the cookie which is used twhen storing consent

@@ -16,6 +16,7 @@
     </style>
   </head>
   <body>
+    <p>Some Test about Cookies and the usage on the website</p>
     <div class="cookieConsent">
     </div>
   </body>
@@ -23,7 +24,7 @@
   <script>
     window.addEventListener('load', function(){
       var parent = document.querySelectorAll(".cookieConsent")[0];
-      mibreitCookieConsent.createCookieSelector(parent, [{label: "Basic Cookies", cookieName: "GA4", info: "this includes Google Analytics. this includes Google Analytics"}, {label: "Optional Cookies", cookieName: "optional", active: false, info: "lorem ipsum"}]);
+      mibreitCookieConsent.createCookieConsent(parent, [{label: "Basic Cookies", cookieName: "GA4", info: "this includes Google Analytics. this includes Google Analytics"}, {label: "Optional Cookies", cookieName: "optional", active: false, info: "lorem ipsum"}]);
     });
   </script>
 </html>
