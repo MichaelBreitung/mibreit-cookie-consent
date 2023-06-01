@@ -5,7 +5,13 @@
 
 import CookieConsent from '../containers/CookieConsent';
 import { CookieSelectorConfig } from '../containers/CookieSelector';
- 
-export default function (parent: HTMLElement, config: Array<CookieSelectorConfig>): CookieConsent {
-  return new CookieConsent(parent, config);
+
+export default function (
+  parent: HTMLElement,
+  config: Array<CookieSelectorConfig>,
+  callback: () => void,
+  german: boolean = false,
+  cookieName: string | undefined = undefined
+): CookieConsent {
+  return new CookieConsent(parent, config, callback, german, cookieName);
 }

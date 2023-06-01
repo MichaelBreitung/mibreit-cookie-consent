@@ -8,33 +8,33 @@ import { addCssClass, createElement, appendChildElement, setInnerHtml, addClickE
 import styles from './ConsentSetting.module.css';
 import ToggleButton from './ToggleButton';
 import InfoSvg from '../assets/info.svg';
+import Component from './Component';
 
-export default class ConsentSetting {
+export default class ConsentSetting extends Component {
   private _toggleButton: ToggleButton;
-  private _setting: HTMLElement;
-
+  
   constructor(
     parent: HTMLElement,
     label: string,
     active: boolean = true,
     infoClickedCallback: (() => void) | undefined = undefined
   ) {
-    this._setting = createElement('div');
-    addCssClass(this._setting, styles.setter);
-    appendChildElement(this._setting, parent);
-
+    super(parent, 'div');
+    const setting = this.getHTMLElement();
+    addCssClass(setting, styles.setter);
+    
     const labelElement = createElement('span');
     addCssClass(labelElement, 'mibreit_CookieConsent_Label');
     labelElement.innerHTML = label;
-    appendChildElement(labelElement, this._setting);
+    appendChildElement(labelElement, setting);
 
-    this._toggleButton = new ToggleButton(this._setting, active);
+    this._toggleButton = new ToggleButton(setting, active);
 
     if (infoClickedCallback) {
       const infoButton = createElement('div');
       addCssClass(infoButton, styles.svgContainer);
       setInnerHtml(infoButton, InfoSvg);
-      appendChildElement(infoButton, this._setting);
+      appendChildElement(infoButton, setting);
       addClickEventListener(infoButton, (_event) => {
         infoClickedCallback();
       });
@@ -44,6 +44,4 @@ export default class ConsentSetting {
   public isActive(): boolean {
     return this._toggleButton.isActive();
   }
-
-  public setInfoClickedCallback(callback: () => void) {}
 }

@@ -9,27 +9,73 @@ import styles from './CookieConsent.module.css';
 import Button from '../components/Button';
 import CookieSelector, { CookieSelectorConfig } from './CookieSelector';
 
+const EXPIRATION_DAYS = 30;
+const DEFAULT_COOKIE_NAME = 'consentCookie';
+
 export default class CookieConsent {
   private _cookieSelector: CookieSelector;
-  private _buttonRow: HTMLElement;
+  private _cookieName: string = DEFAULT_COOKIE_NAME;
+  private _acceptDefaultButton: Button;
+  private _configureButton: Button;
+  private _submitButton: Button;
+  private _consentCallback: () => void;
 
-  constructor(parent: HTMLElement, config: Array<CookieSelectorConfig>, cookieName: string | undefined = undefined) {
-    this._buttonRow = createElement('div');
-    addCssClass(this._buttonRow, styles.buttonRow);
-    appendChildElement(this._buttonRow, parent);
-    new Button(this._buttonRow, 'Accept All Cookies', this._acceptAllCookies);
-    new Button(this._buttonRow, 'Configure Cookies', this._configureCookies);
+  constructor(
+    parent: HTMLElement,
+    config: Array<CookieSelectorConfig>,
+    callback: () => void,
+    german: boolean = false,
+    cookieName: string | undefined = undefined
+  ) {
+    if (cookieName) {
+      this._cookieName = cookieName;
+    }
+    this._consentCallback = callback;
 
-    this._cookieSelector = new CookieSelector(parent, config, cookieName);
+    const cookieConsent = createElement('div');
+    addCssClass(cookieConsent, styles.main);
+    appendChildElement(cookieConsent, parent);
+
+    if (german) {
+      this._acceptDefaultButton = new Button(cookieConsent, 'Standard Cookies akzeptieren', this._acceptDefaultCookies);
+      this._configureButton = new Button(cookieConsent, 'Cookies konfigurieren', this._configureCookies);
+    } else {
+      this._acceptDefaultButton = new Button(cookieConsent, 'Accept Default Cookies', this._acceptDefaultCookies);
+      this._configureButton = new Button(cookieConsent, 'Configure Cookies', this._configureCookies);
+    }
+
+    this._cookieSelector = new CookieSelector(cookieConsent, config);
     this._cookieSelector.hide();
+
+    if (german) {
+      this._submitButton = new Button(cookieConsent, 'Auswahl erlauben', this._updateCookies);
+    } else {
+      this._submitButton = new Button(cookieConsent, 'Submit Selection', this._updateCookies);
+    }
+    this._submitButton.hide();
   }
 
-  private _acceptAllCookies = () => {
-    this._cookieSelector.saveCurrentSelection();
+  private _acceptDefaultCookies = () => {
+    this._updateCookies();
   };
 
   private _configureCookies = () => {
     this._cookieSelector.show();
-    addCssClass(this._buttonRow, styles.hide);
+    this._submitButton.show();
+    this._acceptDefaultButton.hide();
+    this._configureButton.hide();
+  };
+
+  private _updateCookies = () => {
+    const cookies = this._cookieSelector.getCookieSelection();
+
+    console.log('CookieSelector#_updateCookies', JSON.stringify(cookies));
+
+    const exdate = new Date();
+    exdate.setDate(exdate.getDate() + EXPIRATION_DAYS);
+    var cookieValue = JSON.stringify(cookies) + '; samesite=Lax' + ('; expires=' + exdate.toUTCString());
+    document.cookie = this._cookieName + '=' + cookieValue;
+
+    this._consentCallback();
   };
 }

@@ -1,10 +1,12 @@
-.buttonRow {
+.main {
+  position: relative;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
-.buttonRow.hide {
-  display: none;
+.main > *:not(:last-child) {
+  margin-bottom: 0.5rem;
 }
-.buttonRow > :global(.mibreit_CookieConsent_Button) {
+.main > :global(.mibreit_CookieConsent_Button) {
   width: 100%;
 }
