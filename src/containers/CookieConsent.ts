@@ -43,6 +43,7 @@ export default class CookieConsent {
 
     const cookieConsent = createElement('div');
     addCssClass(cookieConsent, styles.main);
+    addCssClass(cookieConsent,'mibreit_CookieConsent');
     appendChildElement(cookieConsent, parent);
 
     this._acceptDefaultButton = new Button(cookieConsent, acceptButtonText, this._acceptDefaultCookiesClicked);
@@ -55,22 +56,12 @@ export default class CookieConsent {
     this._submitButton.hide();
   }
 
-  public getConsentCookie(): { [key: string]: boolean } | undefined {
-    const documentCookies = document.cookie.split(';');
-    for (const cookie of documentCookies) {
-      const posEquals = cookie.indexOf('=');
-      const name = cookie.substring(0, posEquals).replace(/^\s+|\s+$/g, '');
-      const value = cookie.substring(posEquals + 1).replace(/^\s+|\s+$/g, '');
-      console.log('CookieConsent#_findConsentCookie', name);
-      if (name === this._cookieName) {
-        return JSON.parse(value);
-      }
-    }
-    return undefined;
+  private _getConsentCookie(): { [key: string]: boolean } | undefined {
+    return getConsentCookie(this._cookieName);
   }
 
   private _updateConfigFromCookie(config: Array<CookieSelectorConfig>): Array<CookieSelectorConfig> {
-    const cookie = this.getConsentCookie();
+    const cookie = this._getConsentCookie();
     console.log('CookieConsent#_updateConfigFromCookie', cookie);
     if (cookie) {
       const cookieNames = Object.keys(cookie);
@@ -107,4 +98,18 @@ export default class CookieConsent {
 
     this._consentCallback();
   };
+}
+
+export function getConsentCookie(cookieName: string): { [key: string]: boolean } | undefined {
+  const documentCookies = document.cookie.split(';');
+  for (const cookie of documentCookies) {
+    const posEquals = cookie.indexOf('=');
+    const name = cookie.substring(0, posEquals).replace(/^\s+|\s+$/g, '');
+    const value = cookie.substring(posEquals + 1).replace(/^\s+|\s+$/g, '');
+    console.log('CookieConsent#_findConsentCookie', name);
+    if (name === cookieName) {
+      return JSON.parse(value);
+    }
+  }
+  return undefined;
 }

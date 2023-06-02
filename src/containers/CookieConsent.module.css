@@ -1,7 +1,5 @@
 .main {
   position: relative;
-  display: flex;
-  flex-direction: column;
   width: 100%;
 }
 .main > *:not(:last-child) {

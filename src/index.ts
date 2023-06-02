@@ -4,3 +4,4 @@
  */
 
 export { default as createCookieConsent} from './factories/createCookieConsent';
+export { getConsentCookie } from './containers/CookieConsent';
