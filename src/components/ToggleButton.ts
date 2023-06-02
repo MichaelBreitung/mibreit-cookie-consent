@@ -15,6 +15,7 @@ export default class ToggleButton extends Component {
     super(parent, 'label');
    
     addCssClass(this.component, styles.toggleButton);
+    addCssClass(this.component, 'mibreit_CookieConsent_ToggleButton');
 
     this._input = createInputElement('checkbox');
     this._input.checked = active;
