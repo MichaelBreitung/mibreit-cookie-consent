@@ -9,7 +9,7 @@ import { CookieSelectorConfig } from '../containers/CookieSelector';
 export default function (
   parent: HTMLElement,
   config: Array<CookieSelectorConfig>,
-  callback: () => void,
+  callback: (cookies: { [key: string]: boolean }) => void,
   german: boolean = false,
   cookieName: string | undefined = undefined
 ): CookieConsent {

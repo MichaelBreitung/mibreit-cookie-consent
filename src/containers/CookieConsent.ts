@@ -18,12 +18,12 @@ export default class CookieConsent {
   private _acceptDefaultButton: Button;
   private _configureButton: Button;
   private _submitButton: Button;
-  private _consentCallback: () => void;
+  private _consentCallback: (cookies: { [key: string]: boolean }) => void;
 
   constructor(
     parent: HTMLElement,
     config: Array<CookieSelectorConfig>,
-    callback: () => void,
+    callback: (cookies: { [key: string]: boolean }) => void,
     german: boolean = false,
     cookieName: string | undefined = undefined
   ) {
@@ -96,7 +96,7 @@ export default class CookieConsent {
     var cookieValue = JSON.stringify(cookies) + '; samesite=Lax' + ('; expires=' + exdate.toUTCString());
     document.cookie = this._cookieName + '=' + cookieValue;
 
-    this._consentCallback();
+    this._consentCallback(cookies);
   };
 }
 
