@@ -13,15 +13,15 @@ export default class ToggleButton extends Component {
 
   constructor(parent: HTMLElement, active: boolean = true) {
     super(parent, 'label');
-    const toggleButton = this.getHTMLElement();
-    addCssClass(toggleButton, styles.toggleButton);
+   
+    addCssClass(this.component, styles.toggleButton);
 
     this._input = createInputElement('checkbox');
     this._input.checked = active;
-    appendChildElement(this._input, toggleButton);
+    appendChildElement(this._input, this.component);
 
     const span = createElement('span');
-    appendChildElement(span, toggleButton);
+    appendChildElement(span, this.component);
   }
 
   public isActive(): boolean {

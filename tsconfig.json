@@ -7,6 +7,8 @@
     "allowJs": true,
     "declaration": true,
     "strictNullChecks": true,
+    "allowUnusedLabels": false,
+    "noUnusedLocals": true,
     "moduleResolution": "node",
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },

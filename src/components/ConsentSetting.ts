@@ -12,7 +12,7 @@ import Component from './Component';
 
 export default class ConsentSetting extends Component {
   private _toggleButton: ToggleButton;
-  
+
   constructor(
     parent: HTMLElement,
     label: string,
@@ -20,21 +20,20 @@ export default class ConsentSetting extends Component {
     infoClickedCallback: (() => void) | undefined = undefined
   ) {
     super(parent, 'div');
-    const setting = this.getHTMLElement();
-    addCssClass(setting, styles.setter);
-    
+    addCssClass(this.component, styles.setter);
+
     const labelElement = createElement('span');
     addCssClass(labelElement, 'mibreit_CookieConsent_Label');
     labelElement.innerHTML = label;
-    appendChildElement(labelElement, setting);
+    appendChildElement(labelElement, this.component);
 
-    this._toggleButton = new ToggleButton(setting, active);
+    this._toggleButton = new ToggleButton(this.component, active);
 
     if (infoClickedCallback) {
       const infoButton = createElement('div');
       addCssClass(infoButton, styles.svgContainer);
       setInnerHtml(infoButton, InfoSvg);
-      appendChildElement(infoButton, setting);
+      appendChildElement(infoButton, this.component);
       addClickEventListener(infoButton, (_event) => {
         infoClickedCallback();
       });

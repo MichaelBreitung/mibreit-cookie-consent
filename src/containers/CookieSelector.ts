@@ -21,9 +21,8 @@ export default class CookieSelector extends Component {
 
   constructor(parent: HTMLElement, config: Array<CookieSelectorConfig>) {
     super(parent, 'div');
-    const cookieSelector = this.getHTMLElement();
-    addCssClass(cookieSelector, 'mibreit_CookieConsent');
-    addCssClass(cookieSelector, styles.main);
+    addCssClass(this.component, 'mibreit_CookieConsent');
+    addCssClass(this.component, styles.main);
     config.forEach((settingConfig) => {
       if (settingConfig.info) {
         const infoElement = createElement('span');
@@ -34,7 +33,7 @@ export default class CookieSelector extends Component {
           let isInfoVisible = false;
           this._cookies.set(
             settingConfig.cookieName,
-            new ConsentSetting(cookieSelector, settingConfig.label, settingConfig.active, () => {
+            new ConsentSetting(this.component, settingConfig.label, settingConfig.active, () => {
               if (isInfoVisible) {
                 removeCssClass(infoElement, styles.visible);
                 isInfoVisible = false;
@@ -46,11 +45,11 @@ export default class CookieSelector extends Component {
           );
         }
 
-        appendChildElement(infoElement, cookieSelector);
+        appendChildElement(infoElement, this.component);
       } else {
         this._cookies.set(
           settingConfig.cookieName,
-          new ConsentSetting(cookieSelector, settingConfig.label, settingConfig.active)
+          new ConsentSetting(this.component, settingConfig.label, settingConfig.active)
         );
       }
     });
