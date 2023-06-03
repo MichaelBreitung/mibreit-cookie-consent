@@ -21,7 +21,7 @@ export default class CookieSelector extends Component {
 
   constructor(parent: HTMLElement, config: Array<CookieSelectorConfig>) {
     super(parent, 'div');
-    addCssClass(this.component, 'mibreit_CookieConsent');
+    addCssClass(this.component, 'mibreit_CookieConsent_Selector');
     addCssClass(this.component, styles.main);
     config.forEach((settingConfig) => {
       if (settingConfig.info) {

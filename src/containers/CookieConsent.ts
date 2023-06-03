@@ -43,7 +43,7 @@ export default class CookieConsent {
 
     const cookieConsent = createElement('div');
     addCssClass(cookieConsent, styles.main);
-    addCssClass(cookieConsent,'mibreit_CookieConsent');
+    addCssClass(cookieConsent, 'mibreit_CookieConsent');
     appendChildElement(cookieConsent, parent);
 
     this._acceptDefaultButton = new Button(cookieConsent, acceptButtonText, this._acceptDefaultCookiesClicked);
@@ -65,11 +65,13 @@ export default class CookieConsent {
     console.log('CookieConsent#_updateConfigFromCookie', cookie);
     if (cookie) {
       const cookieNames = Object.keys(cookie);
-      config.forEach((configSetting) => {
-        if (cookieNames.includes(configSetting.cookieName)) {
-          configSetting.active = cookie[configSetting.cookieName];
-        }
-      });
+      if (cookieNames) {
+        config.forEach((configSetting) => {
+          if (cookieNames.includes(configSetting.cookieName)) {
+            configSetting.active = cookie[configSetting.cookieName];
+          }
+        });
+      }
     }
 
     return config;
@@ -108,7 +110,11 @@ export function getConsentCookie(cookieName: string): { [key: string]: boolean }
     const value = cookie.substring(posEquals + 1).replace(/^\s+|\s+$/g, '');
     console.log('CookieConsent#_findConsentCookie', name);
     if (name === cookieName) {
-      return JSON.parse(value);
+      try {
+        return JSON.parse(value);
+      } catch (e) {
+        return undefined;
+      }
     }
   }
   return undefined;

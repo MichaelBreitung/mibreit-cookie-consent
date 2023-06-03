@@ -8,9 +8,11 @@ You will find an example under */demo/consent.html*.
 
 ````
 mibreitCookieConsent.createCookieConsent(
-  parent, // Parent HTMLElement
+  parent,            // Parent HTMLElement
   [{label: "Basic Cookies", cookieName: "basic", info: "Basic Cookies Info"}, 
    {label: "Optional Cookies", cookieName: "optional", active: false, info: "Optional Cookies Info"}],
+  callback,          // (cookie) => void -> callback function that is called when cookie is saved
+  german,            // boolean, which you can set to true for german cookie consent -> default false for english
   "customCookieName" // custom name for storing the consent
 );
 ````
@@ -21,12 +23,23 @@ The content of the consent cookie is configured by passing an Array of configura
 
 Each config within the Array is used to create a *ConsentSetting* inside the *CookieConsent*:
 
-- label - The displayed name of the consent setting
-- cookieName - The name of the cookie which is used twhen storing consent
-- active - The initial setting for the consent setting - true or false. Default is true
-- info - Optional string containing additional information about the consent setting
+- **label** - The displayed name of the consent setting
+- **cookieName** - The name of the cookie which is used twhen storing consent
+- **active** - The initial setting for the consent setting - true or false. Default is true
+- **info** - Optional string containing additional information about the consent setting
 
 The consent is stored as a Cookie with the name *consentCookie* if not defined otherwise.
+
+## Styling
+
+You can use the following classes to adjust the look of this widget:
+
+- **mibreit_CookieConsent** - The complete widget
+- **mibreit_CookieConsent_Selector** - A cookie selector, with a Label, a ToggleButton and an optional Info
+- **mibreit_CookieConsent_Label** - Label text for a cookie selector
+- **mibreit_CookieConselt_Info** - Optional Info text for a cookie selector
+- **mibreit_CookieConsent_ToggleButton** - Toggle Button for a cookie selector
+- **mibreit_CookieConsent_Button** - accept, submit, configure button
 
 ## Building
 
