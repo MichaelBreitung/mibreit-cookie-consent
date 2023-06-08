@@ -55,10 +55,10 @@ export default class CookieSelector extends Component {
     });
   }
 
-  public getCookieSelection(): { [key: string]: boolean } {
+  public getCookieSelection(allActive: boolean = false): { [key: string]: boolean } {
     const cookieSelection: { [key: string]: boolean } = {};
     this._cookies.forEach((value, key) => {
-      cookieSelection[key] = value.isActive();
+      cookieSelection[key] = allActive ? true : value.isActive();
     });
     return cookieSelection;
   }
