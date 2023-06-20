@@ -97,7 +97,7 @@ export default class CookieConsent {
 
     const exdate = new Date();
     exdate.setDate(exdate.getDate() + EXPIRATION_DAYS);
-    var cookieValue = JSON.stringify(cookies) + '; samesite=Lax' + ('; expires=' + exdate.toUTCString());
+    var cookieValue = JSON.stringify(cookies) + '; samesite=Lax' + '; path=/ ; expires=' + exdate.toUTCString();
     document.cookie = this._cookieName + '=' + cookieValue;
 
     this._consentCallback(cookies);
