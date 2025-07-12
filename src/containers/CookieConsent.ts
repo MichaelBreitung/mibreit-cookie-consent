@@ -47,15 +47,16 @@ export default class CookieConsent {
     appendChildElement(cookieConsent, parent);
 
     this._acceptDefaultButton = new Button(cookieConsent, acceptButtonText, this._acceptAllCookiesClicked);
-    this._configureButton = new Button(cookieConsent, configureButtonText, this._configureCookiesClicked);
-
     this._cookieSelector = new CookieSelector(cookieConsent, this._updateConfigFromCookie(config));
     this._cookieSelector.hide();
-
-    this._submitButton = new Button(cookieConsent, submitButtonText, () => {
-      this._updateCookiesClicked(false);
-    });
-    this._submitButton.hide();
+    
+    if (config.length)  {
+      this._configureButton = new Button(cookieConsent, configureButtonText, this._configureCookiesClicked);
+      this._submitButton = new Button(cookieConsent, submitButtonText, () => {
+        this._updateCookiesClicked(false);
+      });
+      this._submitButton.hide();
+    }
   }
 
   private _getConsentCookie(): { [key: string]: boolean } | undefined {
