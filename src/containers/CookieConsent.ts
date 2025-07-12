@@ -12,6 +12,12 @@ import CookieSelector, { CookieSelectorConfig } from './CookieSelector';
 const EXPIRATION_DAYS = 30;
 const DEFAULT_COOKIE_NAME = 'consentCookie';
 
+export type ButtonNamesConfig = {
+  acceptButton?: string;
+  configureButton?: string;
+  submitButton?: string;
+}
+
 export default class CookieConsent {
   private _cookieSelector: CookieSelector;
   private _cookieName: string = DEFAULT_COOKIE_NAME;
@@ -25,21 +31,23 @@ export default class CookieConsent {
     config: Array<CookieSelectorConfig>,
     callback: (cookies: { [key: string]: boolean }) => void,
     german: boolean = false,
-    cookieName: string | undefined = undefined
+    cookieName: string | undefined = undefined,
+    buttonNames: ButtonNamesConfig | undefined = undefined
   ) {
     if (cookieName) {
       this._cookieName = cookieName;
     }
     this._consentCallback = callback;
 
-    let acceptButtonText = 'Accept Cookies';
-    let configureButtonText = 'Configure Cookies';
-    let submitButtonText = 'Submit Selection';
+    let acceptButtonText = buttonNames?.acceptButton ?? 'Accept Cookies';
+    let configureButtonText = buttonNames?.configureButton ?? 'Configure Cookies';
+    let submitButtonText = buttonNames?.submitButton ?? 'Submit Selection';
     if (german) {
-      acceptButtonText = 'Cookies akzeptieren';
-      configureButtonText = 'Cookies konfigurieren';
-      submitButtonText = 'Auswahl erlauben';
+      acceptButtonText = buttonNames?.acceptButton ?? 'Cookies akzeptieren';
+      configureButtonText = buttonNames?.configureButton ?? 'Cookies konfigurieren';
+      submitButtonText = buttonNames?.submitButton ?? 'Auswahl erlauben';
     }
+    
 
     const cookieConsent = createElement('div');
     addCssClass(cookieConsent, styles.main);

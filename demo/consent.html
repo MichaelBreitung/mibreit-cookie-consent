@@ -34,7 +34,7 @@
 
       mibreitCookieConsent.createCookieConsent(parent[1], [{label: "Basic Cookies", cookieName: "GA4", info: "this includes Google Analytics. this includes Google Analytics"}, {label: "Optional Cookies", cookieName: "optional", active: false, info: "lorem ipsum"}], () => {console.log("German Cookies Saved")}, true, "cookieConsentDe");
 
-      mibreitCookieConsent.createCookieConsent(parent[2], [], () => {console.log("German Cookies Saved")}, true, "cookieConsentTwo");
+      mibreitCookieConsent.createCookieConsent(parent[2], [], () => {console.log("German Cookies Saved")}, true, "cookieConsentTwo", {"acceptButton": "Ok"});
     });
   </script>
 </html>
