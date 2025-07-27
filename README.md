@@ -34,12 +34,12 @@ The consent is stored as a Cookie with the name *consentCookie* if not defined o
 
 You can use the following classes to adjust the look of this widget:
 
-- **mibreit_CookieConsent** - The complete widget
-- **mibreit_CookieConsent_Selector** - A cookie selector, with a Label, a ToggleButton and an optional Info
-- **mibreit_CookieConsent_Label** - Label text for a cookie selector
-- **mibreit_CookieConselt_Info** - Optional Info text for a cookie selector
-- **mibreit_CookieConsent_ToggleButton** - Toggle Button for a cookie selector
-- **mibreit_CookieConsent_Button** - accept, submit, configure button
+- **mbcc__main** - The complete widget
+- **mbcc__main__selector** - A cookie selector, with a Label, a ToggleButton and an optional Info
+- **mbcc__main__label** - Label text for a cookie selector
+- **mbcc__main__info** - Optional Info text for a cookie selector
+- **mbcc__main__toggle_button** - Toggle Button for a cookie selector
+- **mbcc__main__button** - accept, submit, configure button
 
 ## Building
 

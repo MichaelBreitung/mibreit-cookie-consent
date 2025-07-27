@@ -23,7 +23,7 @@ export default class ConsentSetting extends Component {
     addCssClass(this.component, styles.setter);
 
     const labelElement = createElement('span');
-    addCssClass(labelElement, 'mibreit_CookieConsent_Label');
+    addCssClass(labelElement, 'mbcc__main__label');
     labelElement.innerHTML = label;
     appendChildElement(labelElement, this.component);
 

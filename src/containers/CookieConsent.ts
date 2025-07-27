@@ -51,7 +51,7 @@ export default class CookieConsent {
 
     const cookieConsent = createElement('div');
     addCssClass(cookieConsent, styles.main);
-    addCssClass(cookieConsent, 'mibreit_CookieConsent');
+    addCssClass(cookieConsent, 'mbcc__main');
     appendChildElement(cookieConsent, parent);
 
     this._acceptDefaultButton = new Button(cookieConsent, acceptButtonText, this._acceptAllCookiesClicked);

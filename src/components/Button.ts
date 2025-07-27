@@ -13,7 +13,7 @@ export default class Button extends Component {
     super(parent, 'button');
     this.component.innerHTML = text;
     addCssClass(this.component, styles.button);
-    addCssClass(this.component, 'mibreit_CookieConsent_Button');
+    addCssClass(this.component, 'mbcc__main__button');
     appendChildElement(this.component, parent);
     addClickEventListener(this.component, onClick);
   }

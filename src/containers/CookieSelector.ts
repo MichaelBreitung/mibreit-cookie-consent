@@ -21,13 +21,13 @@ export default class CookieSelector extends Component {
 
   constructor(parent: HTMLElement, config: Array<CookieSelectorConfig>) {
     super(parent, 'div');
-    addCssClass(this.component, 'mibreit_CookieConsent_Selector');
+    addCssClass(this.component, 'mbcc__main__selector');
     addCssClass(this.component, styles.main);
     config.forEach((settingConfig) => {
       if (settingConfig.info) {
         const infoElement = createElement('span');
         addCssClass(infoElement, styles.info);
-        addCssClass(infoElement, 'mibreit_CookieConsent_Info');
+        addCssClass(infoElement, 'mbcc__main__info');
         infoElement.innerHTML = settingConfig.info;
         {
           let isInfoVisible = false;

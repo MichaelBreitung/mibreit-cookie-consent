@@ -5,6 +5,6 @@
 .main > *:not(:last-child) {
   margin-bottom: 0.5rem;
 }
-.main > :global(.mibreit_CookieConsent_Button) {
+.main > :global(.mbcc__main__button) {
   width: 100%;
 }
